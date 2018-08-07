@@ -38,6 +38,7 @@ nestedView('Build Pipeline') {
             selectedJob("${name}Service-Build")
         }
     }
+  }
 }
 
 
