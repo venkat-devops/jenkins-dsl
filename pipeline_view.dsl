@@ -13,7 +13,14 @@ config.microservices.each { name, data ->
 //create build pipeline view for every microservice
 config.microservices.each {name, data ->
   buildPipelineView(name) {
+    filterBuildQueue()
+    filterExecutors()
+    title("${name}Service CI Pipeline")
+    displayedBuilds(5)
     selectedJob("${name}Service")
+    alwaysAllowManualTrigger()
+    showPipelineParameters()
+    refreshFrequency(60)
   }
 }
 
