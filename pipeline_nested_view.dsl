@@ -12,7 +12,7 @@ config.microservices.each { name, data ->
 
 //create build pipeline view for every microservice
 config.microservices.each {name, data ->
-  buildPipelineView(name) {
+  buildPipelineView("${name}Service") {
     filterBuildQueue()
     filterExecutors()
     title("${name}Service CI Pipeline")
@@ -43,34 +43,6 @@ nestedView('Build Pipeline') {
          startsWithParameters(true)
         }
      }
-  }
-}
-
-nestedView('test') {
-  views {
-    listView("Builds (Dev)") {
-      jobs {
-        name('CustomerService-Build')
-      }
-      columns {
-        status()
-        weather()
-        name()
-      }
-    }
-    listView("Deployments (Dev)") {
-      jobs {
-        name('CustomerService-Deploy')
-      }
-      columns {
-        status()
-        weather()
-        name()
-      }
-    }
-  }
-  configure { view ->
-    view / defaultView('Builds (Dev)')
   }
 }
 
