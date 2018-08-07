@@ -10,6 +10,14 @@ config.microservices.each { name, data ->
   createDeployJob(name,data)
 }
 
+//create build pipeline view for every microservice
+config.microservices.each {name, data ->
+  buildPipelineView(name) {
+    selectedJob("${name}Service")
+  }
+}
+
+
 def createBuildJob(name,data) {
   freeStyleJob("${name}Service") {
     scm {
