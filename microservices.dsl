@@ -11,6 +11,7 @@ microservices {
     }
     'Email' {
       url = 'https://github.com/venkat-devops/jenkins-dsl'
+      branch = 'ms-03'
       group = 'EmailService'
     }
 }
