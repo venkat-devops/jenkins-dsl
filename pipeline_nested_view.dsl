@@ -28,21 +28,15 @@ nestedView('Build Pipeline') {
   description('Shows the service build pipelines')
   views {
     config.microservices.each { name,data ->
-      listView('overview') {
-            jobs {
-                regex(/Service*/)
-            }
             columns {
                 status()
                 weather()
                 lastSuccess()
                 lastFailure()
             }
-        }
         buildPipelineView("${name}") {
             selectedJob("${name}Service-Build")
         }
-      }
     }
 }
 
