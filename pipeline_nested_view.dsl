@@ -24,21 +24,40 @@ config.microservices.each {name, data ->
   }
 }
 
+def microservicesByGroup = config.microservices.groupBy { name,data -> data.group }
+
+// create nested build pipeline view
 nestedView('Build Pipeline') {
-  description('Shows the service build pipelines')
-  views {
-    config.microservices.each { name,data ->
+   description('Shows the service build pipelines')
+   columns {
+      status()
+      weather()
+   }
+   views {
+      microservicesByGroup.each { group, services ->
+         nestedView("${group}") {
+            description('Shows the service build pipelines')
             columns {
-                status()
-                weather()
-                lastSuccess()
-                lastFailure()
+               status()
+               weather()
             }
-        buildPipelineView("${name}") {
-            selectedJob("${name}Service-Build")
-        }
-    }
-  }
+            views {
+               def innerNestedView = delegate
+               services.each { name,data ->
+                  innerNestedView.buildPipelineView("${name}") {
+                     selectedJob("${name}Service-Build")
+                     triggerOnlyLatestJob(true)
+    	             alwaysAllowManualTrigger(true)
+                     showPipelineParameters(true)
+                     showPipelineParametersInHeaders(true)
+                     showPipelineDefinitionHeader(true)
+    	             startsWithParameters(true)
+                  }
+               }
+            }
+         }
+      }
+   }
 }
 
 
