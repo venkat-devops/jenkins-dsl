@@ -46,8 +46,33 @@ nestedView('Build Pipeline') {
   }
 }
 
-
-
+nestedView('test') {
+  views {
+    listView("Builds (Dev)") {
+      jobs {
+        name('CustomerService-Build')
+      }
+      columns {
+        status()
+        weather()
+        name()
+      }
+    }
+    listView("Deployments (Dev)") {
+      jobs {
+        name('CustomerService-Deploy')
+      }
+      columns {
+        status()
+        weather()
+        name()
+      }
+    }
+  }
+  configure { view ->
+    view / defaultView('Builds (Dev)')
+  }
+}
 
 def createBuildJob(name,data) {
   freeStyleJob("${name}Service-Build") {
