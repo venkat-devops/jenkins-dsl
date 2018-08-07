@@ -17,7 +17,7 @@ config.microservices.each {name, data ->
     filterExecutors()
     title("${name}Service CI Pipeline")
     displayedBuilds(5)
-    selectedJob("${name}Service")
+    selectedJob("${name}Service-Build")
     alwaysAllowManualTrigger()
     showPipelineParameters()
     refreshFrequency(60)
@@ -26,7 +26,7 @@ config.microservices.each {name, data ->
 
 
 def createBuildJob(name,data) {
-  freeStyleJob("${name}Service") {
+  freeStyleJob("${name}Service-Build") {
     scm {
       git {
         remote {
