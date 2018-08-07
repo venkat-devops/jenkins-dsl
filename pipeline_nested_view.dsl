@@ -34,7 +34,7 @@ nestedView('Build Pipeline') {
      config.microservices.each { name,data ->
         println "creating build pipeline subview for ${name}"
         buildPipelineView("${name}Service") {
-           selectedJob("${name}Service-Build")
+           selectedJob("${name}Service-*")
            triggerOnlyLatestJob(true)
          alwaysAllowManualTrigger(true)
          showPipelineParameters(true)
