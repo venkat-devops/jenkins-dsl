@@ -35,7 +35,6 @@ nestedView('Build Pipeline') {
             columns {
                 status()
                 weather()
-                name()
                 lastSuccess()
                 lastFailure()
             }
