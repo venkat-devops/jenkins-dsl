@@ -46,27 +46,6 @@ nestedView('Build Pipeline') {
   }
 }
 
-
-nestedView('Build Pipeline Tests') {
-  views {
-    config.microservices.each { name,data ->
-      listView("Build Jobs") {
-        jobs {
-          name("${name}Service-Build")
-        }
-          columns {
-            status()
-            weather()
-            name()
-          }
-        }
-      }
-  configure { view ->
-    view / defaultView("${name}Service")
-  }
-  }
-}
-
 nestedView('test') {
   views {
     listView("Builds (Dev)") {
