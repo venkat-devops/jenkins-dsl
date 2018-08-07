@@ -43,6 +43,7 @@ nestedView('Build Pipeline') {
          showPipelineDefinitionHeader(true)
          startsWithParameters(true)
         }
+     }
   }
 }
 
