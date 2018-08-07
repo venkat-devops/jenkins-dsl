@@ -8,7 +8,7 @@ config.microservices.each { name, data ->
 }
 
 def createBuildJob(name,data) {
-  freeStyleJob("${name}Service)") {
+  freeStyleJob("${name}-Service)") {
     scm {
       git {
         remote {
