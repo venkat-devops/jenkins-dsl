@@ -32,18 +32,17 @@ nestedView('Build Pipeline') {
     weather()
   }
   views {
-    config.microservices.each {name, data ->
-      println "Creating build pipeline subview for ${name}"
-      buildPipelineView("$name")
-
-        selectedJob("${name}Service-Build")
-        triggerOnlyLatestJob(true)
-        alwaysAllowManualTrigger(true)
-        showPipelineParameters(true)
-        showPipelineParametersInHeaders(true)
-        showPipelineDefinitionHeader(true)
-        startsWithParameters(true)
-    }
+     config.microservices.each { name,data ->
+        println "creating build pipeline subview for ${name}"
+        buildPipelineView("${name}") {
+           selectedJob("${name}Service-Build")
+           triggerOnlyLatestJob(true)
+         alwaysAllowManualTrigger(true)
+         showPipelineParameters(true)
+           showPipelineParametersInHeaders(true)
+         showPipelineDefinitionHeader(true)
+         startsWithParameters(true)
+        }
   }
 }
 
