@@ -1,6 +1,6 @@
 def slurper = new ConfigSlurper()
 slurper.classLoader = this.class.classLoader
-def config = slurper.parse(readFileFromWorkspace('microservices.dsl')
+def config = slurper.parse(readFileFromWorkspace('microservices.dsl'))
 
 // create job for every microservice
 config.microservices.each { name, data ->
