@@ -24,27 +24,27 @@ config.microservices.each {name, data ->
   }
 }
 
-nestedView('Build Pipeline') {
-  description('Shows the service build pipelines')
-  columns {
-    status()
-    weather()
-  }
-  views {
-     config.microservices.each { name,data ->
-        println "creating build pipeline subview for ${name}"
-        buildPipelineView("${name}Service") {
-           selectedJob("${name}Service-*")
-           triggerOnlyLatestJob(true)
-         alwaysAllowManualTrigger(true)
-         showPipelineParameters(true)
-           showPipelineParametersInHeaders(true)
-         showPipelineDefinitionHeader(true)
-         startsWithParameters(true)
-        }
-     }
-  }
-}
+// nestedView('Build Pipeline') {
+//   description('Shows the service build pipelines')
+//   columns {
+//     status()
+//     weather()
+//   }
+//   views {
+//      config.microservices.each { name,data ->
+//         println "creating build pipeline subview for ${name}"
+//         buildPipelineView("${name}Service") {
+//            selectedJob("${name}Service-*")
+//            triggerOnlyLatestJob(true)
+//          alwaysAllowManualTrigger(true)
+//          showPipelineParameters(true)
+//            showPipelineParametersInHeaders(true)
+//          showPipelineDefinitionHeader(true)
+//          startsWithParameters(true)
+//         }
+//      }
+//   }
+// }
 
 def createBuildJob(name,data) {
   freeStyleJob("${name}Service-Build") {
