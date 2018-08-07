@@ -39,7 +39,7 @@ def createBuildJob(name,data) {
     }
 
     publishers {
-      downstream("{name}Service-ITest", 'SUCCESS')
+      downstream("${name}Service-ITest", 'SUCCESS')
     }
   }
 }
